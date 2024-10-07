@@ -8,7 +8,7 @@ int main(void)
     Display display(1300,800,"OpenEngine3D");
     while (!display.IsClosed())
     {
-        display.Clear(0.0f, 0.4f,0.0f,0.0f);
+        display.SetColor(0.0f, 0.4f,0.0f,0.0f);
         display.Update();
     }
     return 0;
