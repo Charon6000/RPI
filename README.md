@@ -11,7 +11,7 @@
 Klasa Display pozwala na wyświetlanie okna aplikacji.
 Posiada funkcje:
 * ``Display(<szerokość w pikselach>, <wysokość w pikselach>, <tytuł>)`` - tworzy okno i jego kontekst
-* ``~Display()`` - Zamyka okno usuwając dane kontekstu i okna
+* ``~Display()`` - Zamyka okno usuwając dane kontekstu i okna albo robi to po ręcznym zamknięciu okna
 * ``SetColor(<red>, <green>, <blue>, <alpha>)``- Ustawia kolor tła okna
 * ``IsClosed()`` - zwraca zmienną boolean w zależności czy okno jest zamknięte czy otwarte
 * ``Update()`` - aktualizuje okno
