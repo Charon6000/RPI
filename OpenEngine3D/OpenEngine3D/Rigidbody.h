@@ -1,6 +1,4 @@
 #pragma once
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
 #include <cmath> // Dodajemy, aby korzystaæ z funkcji matematycznych
 #define M_PI 3.14159265358979323846
 
