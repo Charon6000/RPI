@@ -1,5 +1,4 @@
-﻿  Shader.cpp
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Shader.cpp(47,48): warning C4267: "=": konwersja z "size_t" do "GLint", możliwa utrata danych
+﻿  Mesh.cpp
   main.cpp
 C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(6,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
 C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,1): warning C4005: "M_PI": ponowna definicja makra
