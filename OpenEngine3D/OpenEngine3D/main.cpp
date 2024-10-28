@@ -21,7 +21,6 @@ int main(void)
     //Rigidbody rigidbody(0.0f, 5.0f, 0.0f);
     while (!display.IsClosed())
     {
-        display.SetColor(0.6f, 0.0f,0.8f,0.0f);
         display.SetColor(250.0f, 0.0f,121.0f,0.0f);
         shader.Bind();
         texture.Bind(0);
