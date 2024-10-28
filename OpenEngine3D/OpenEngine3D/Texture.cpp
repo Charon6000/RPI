@@ -1,12 +1,13 @@
+
 #include "Texture.h"
 #include "stb_image.h"
 #include <cassert>
 #include <iostream>
- 
-Texture::Texture(const std::string& fileName) 
+
+Texture::Texture(const std::string& fileName)
 {
 	int width, height, numComponents;
-	unsigned char* imageData =  stbi_load(fileName.c_str(), &width, &height, &numComponents, 4);
+	unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &numComponents, 4);
 
 	if (imageData == NULL)
 		std::cerr << "Texture loading failed for texture: " << fileName << std::endl;
@@ -25,7 +26,7 @@ Texture::Texture(const std::string& fileName)
 	stbi_image_free(imageData);
 }
 
-Texture::~Texture() 
+Texture::~Texture()
 {
 	glDeleteTextures(1, &m_texture);
 }

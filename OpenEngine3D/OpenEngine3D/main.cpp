@@ -1,7 +1,6 @@
 #define SDL_MAIN_HANDLED
 #include <iostream>
 #include <GL/glew.h>
-
 #include "Display.h"
 #include "Shader.h""
 #include "Rigidbody.h"
@@ -22,11 +21,8 @@ int main(void)
     //Rigidbody rigidbody(0.0f, 5.0f, 0.0f);
     while (!display.IsClosed())
     {
-<<<<<<< HEAD
         display.SetColor(0.6f, 0.0f,0.8f,0.0f);
-=======
         display.SetColor(250.0f, 0.0f,121.0f,0.0f);
->>>>>>> origin
         shader.Bind();
         texture.Bind(0);
         mesh.Draw();

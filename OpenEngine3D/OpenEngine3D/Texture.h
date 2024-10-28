@@ -1,3 +1,4 @@
+
 #pragma once
 #include <string>
 #include <GL/glew.h>
@@ -17,4 +18,3 @@ private:
 
 	GLuint m_texture;
 };
-
