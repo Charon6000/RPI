@@ -1,4 +1,5 @@
-﻿  Texture.cpp
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Texture.cpp(7,83): error C2664: „stbi_uc *stbi_load(const char *,int *,int *,int *,int)”: nie można dokonać konwersji argumentu 2 z „unsigned int *” do „int *”
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Texture.cpp(7,49): message : Wskazane typy nie są powiązane; konwersja wymaga operatora reinterpret_cast, rzutowania w stylu języka C lub rzutowania w stylu funkcji ujętego w nawiasach
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\stb_image.h(157,17): message : zobacz deklarację „stbi_load”
+﻿  main.cpp
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(6,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,1): warning C4005: "M_PI": ponowna definicja makra
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\include\SDL2\SDL_stdinc.h(623): message : zobacz poprzednią definicję „M_PI”
+  OpenEngine3D.vcxproj -> C:\Users\Jakub\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
