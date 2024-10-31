@@ -33,7 +33,6 @@ int main(void)
 
 
 		transform.GetPos().x = sinf(counter);
-        transform.GetRot().z = counter *50;
 		transform.SetScale(glm::vec3(cosCounter,cosCounter,cosCounter));
 
         shader.Bind();

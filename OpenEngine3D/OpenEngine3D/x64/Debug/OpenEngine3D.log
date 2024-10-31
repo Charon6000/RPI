@@ -1,8 +1,8 @@
 ﻿  main.cpp
-C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(5,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
-C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,9): warning C4005: "M_PI": ponowna definicja makra
+C:\Users\huber\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(5,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
+C:\Users\huber\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,1): warning C4005: "M_PI": ponowna definicja makra
   (kompilowanie pliku źródłowego „main.cpp”)
-      C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\include\SDL2\SDL_stdinc.h(623,9):
-      zobacz poprzednią definicję „M_PI”
+  C:\Users\huber\Desktop\RPI\OpenEngine3D\OpenEngine3D\include\SDL2\SDL_stdinc.h(623,1):
+  zobacz poprzednią definicję „M_PI”
   
-  OpenEngine3D.vcxproj -> C:\Users\Pawel\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
+  OpenEngine3D.vcxproj -> C:\Users\huber\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
