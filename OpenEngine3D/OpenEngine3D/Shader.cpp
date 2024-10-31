@@ -18,6 +18,12 @@ Shader::Shader(const std::string& fileName)
     CheckShaderError(_program, GL_LINK_STATUS, true, "Program linking failed!:");
     glValidateProgram(_program);
     CheckShaderError(_program, GL_VALIDATE_STATUS, true, "Program is invalid:");
+
+
+	// pobieranie uniformu z programu, odniesienie sie do niego
+	_uniforms[TRANSFORM_U] = glGetUniformLocation(_program, "transform");
+
+
 }
 
 Shader::~Shader()
@@ -34,6 +40,16 @@ Shader::~Shader()
 void Shader::Bind()
 {
     glUseProgram(_program);
+}
+
+void Shader::Update(const Transform& transform)
+{
+    //nasz model
+	glm::mat4 model = transform.GetModel();
+
+	//update uniformu
+    glUniformMatrix4fv(_uniforms[TRANSFORM_U], 1, GL_FALSE, &model[0][0]);
+
 }
 
 GLuint Shader::CreateShader(const std::string& text, unsigned int type)
