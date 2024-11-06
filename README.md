@@ -57,3 +57,42 @@ Rysuje siatkę na ekranie, wykorzystując dane przechowywane w buforach OpenGL.
 - **`GLuint _vertexArrayObject`**: Identyfikator obiektu tablicy wierzchołków (VAO) OpenGL.
 - **`GLuint _vertexArrayBuffers[NUM_BUFFERS]`**: Bufory przechowujące dane wierzchołków.
 - **`unsigned int _drawCount`**: Liczba wierzchołków do narysowania.
+
+## Klasa Shader
+
+Klasa `Shader` zarządza shaderami w OpenGL, w tym ich ładowaniem, kompilacją i wiązaniem do programu renderującego. Pozwala na ładowanie shaderów z pliku i korzystanie z nich w aplikacji.
+
+### `Shader(const std::string& fileName)`
+Konstruktor klasy `Shader`. Tworzy program shaderów, ładując pliki z shaderami, kompilując je i wiążąc z programem OpenGL.
+
+- **Parametry**:
+  - `fileName`: Ścieżka do pliku z kodem shadera, który zostanie załadowany.
+
+### `void Bind()`
+Wiąże program shaderów do aktualnego kontekstu renderowania, umożliwiając jego użycie w dalszych operacjach rysowania.
+
+### `~Shader()`
+Destruktor klasy `Shader`. Usuwa program shaderów i zwalnia zasoby związane z OpenGL.
+
+## Szczegóły implementacji
+
+- **LoadShader**: Funkcja prywatna `LoadShader` ładuje zawartość pliku shadera do tekstu.
+- **CheckShaderError**: Funkcja `CheckShaderError` sprawdza, czy podczas kompilacji lub linkowania wystąpiły błędy, a następnie wyświetla odpowiedni komunikat o błędzie.
+- **CreateShader**: Funkcja `CreateShader` tworzy i kompiluje shader, a następnie zwraca jego identyfikator.
+
+## Prywatne metody
+
+- **`Shader(const Shader& other)`**  
+  Konstruktor kopiujący (zablokowany w celu uniemożliwienia kopiowania obiektu Shader).
+
+- **`void operator=(const Shader& other)`**  
+  Operator przypisania (zablokowany w celu uniemożliwienia przypisania).
+
+## Stałe
+
+- **NUM_SHADER**: Liczba shaderów, które mogą być załadowane do programu. Ustalona na 2 (np. vertex shader i fragment shader).
+
+## Atrybuty prywatne
+
+- **`GLuint _program`**: Identyfikator programu shaderów w OpenGL.
+- **`GLuint _shaders[NUM_SHADER]`**: Tablica identyfikatorów shaderów, przechowująca różne typy shaderów wykorzystywane w programie.

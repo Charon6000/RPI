@@ -1,11 +1,15 @@
 #pragma once
 #include <string>
 #include <GL/glew.h>
+#include "Transform.h"
 class Shader
 {
 public:
 	Shader(const std::string& fileName);
 	void Bind();
+
+	void Update(const Transform& transform);
+
 	virtual ~Shader();
 protected:
 private:
@@ -17,7 +21,16 @@ private:
 	void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 	GLuint CreateShader(const std::string& text, unsigned int type);
 
+	enum 
+	{
+		// nasz uniform do macierzy modelu
+		TRANSFORM_U,
+		// ilosc uniformow
+		NUM_UNIFORMS
+	};
+
 
 	GLuint _program;
 	GLuint _shaders[NUM_SHADER];
+	GLuint _uniforms[NUM_UNIFORMS];
 };

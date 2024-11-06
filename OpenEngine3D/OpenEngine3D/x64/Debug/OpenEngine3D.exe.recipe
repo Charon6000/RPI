@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>C:\Users\Jakub\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe</FullPath>
+=======
+      <FullPath>C:\Users\huber\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe</FullPath>
+>>>>>>> origin
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
