@@ -7,10 +7,14 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "Transform.h"
+#include "Camera.h"
 
-int main(void) 
+#define WIDTH 1300
+#define HEIGHT 800
+
+int main(void)
 {
-    Display display(1300,800,"OpenEngine3D");
+    Display display(WIDTH, HEIGHT, "OpenEngine3D");
     Shader shader("./res/basicShader");
     Vertex vertices[] = {
         Vertex(glm::vec3(-0.5,-0.5,0), glm::vec2(-1.0 ,0.0)),
@@ -20,6 +24,7 @@ int main(void)
     Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
     Texture texture("./res/mcqueen.jpg");
     //Rigidbody rigidbody(0.0f, 5.0f, 0.0f);
+    Camera camera(glm::vec3(0, 0, -3), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
 	Transform transform;
 
 	float counter = 0.0f;
@@ -33,18 +38,22 @@ int main(void)
 
 
 		transform.GetPos().x = sinf(counter);
-		transform.SetScale(glm::vec3(cosCounter,cosCounter,cosCounter));
+        transform.GetRot().z = cosf(counter);
+        transform.GetRot().x = counter * 500;
+        transform.GetRot().y = counter * 500;
+        transform.GetRot().z = counter * 500;
+		//transform.SetScale(glm::vec3(cosCounter,cosCounter,cosCounter));
 
         shader.Bind();
         texture.Bind(0);
-        shader.Update(transform);
+        shader.Update(transform, camera);
         mesh.Draw();
 
         //rigidbody.Update(0.006f);
         //rigidbody.Draw();
 
         display.Update();
-		counter += 0.01f;
+		counter += 0.0000001f;
     }
     return 0;
 }
