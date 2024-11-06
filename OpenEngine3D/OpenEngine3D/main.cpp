@@ -42,7 +42,7 @@ int main(void)
         transform.GetRot().x = counter * 500;
         transform.GetRot().y = counter * 500;
         transform.GetRot().z = counter * 500;
-		//transform.SetScale(glm::vec3(cosCounter,cosCounter,cosCounter));
+		transform.SetScale(glm::vec3(cosCounter,cosCounter,cosCounter));
 
         shader.Bind();
         texture.Bind(0);
@@ -53,7 +53,7 @@ int main(void)
         //rigidbody.Draw();
 
         display.Update();
-		counter += 0.0000001f;
+		counter += 0.00001f;
     }
     return 0;
 }
