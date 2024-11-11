@@ -1,3 +1,26 @@
-﻿  Mesh.cpp
-C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\Mesh.cpp(33,33): warning C4267: "=": konwersja z "size_t" do "unsigned int", możliwa utrata danych
-  OpenEngine3D.vcxproj -> C:\Users\Pawel\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
+﻿  main.cpp
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,1): warning C4005: "M_PI": ponowna definicja makra
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\include\SDL2\SDL_stdinc.h(623,1):
+  zobacz poprzednią definicję „M_PI”
+  
+  obj_loader.cpp
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(27,37): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(84,29): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(121,58): warning C4267: "=": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(136,53): warning C4267: "=": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(164,22): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(262,30): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(296,30): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(329,30): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(378,16): warning C4244: "return": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\obj_loader.cpp(386,28): warning C4267: "inicjowanie": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+  Rigidbody.cpp
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.cpp(37,22): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.cpp(38,22): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.cpp(42,23): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+  Generowanie kodu...
+  stb_image.c
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(501,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(514,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
+  OpenEngine3D.vcxproj -> C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
