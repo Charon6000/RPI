@@ -1,8 +1,19 @@
-﻿  main.cpp
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(5,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,1): warning C4005: "M_PI": ponowna definicja makra
-  (kompilowanie pliku źródłowego „main.cpp”)
-  C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\include\SDL2\SDL_stdinc.h(623,1):
-  zobacz poprzednią definicję „M_PI”
-  
-  OpenEngine3D.vcxproj -> C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
+﻿  Display.cpp
+  main.cpp
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(5,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.h(3,1): warning C4005: "M_PI": ponowna definicja makra
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\include\SDL2\SDL_stdinc.h(623): message : zobacz poprzednią definicję „M_PI”
+  Mesh.cpp
+  Rigidbody.cpp
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.cpp(37,22): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.cpp(38,22): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Rigidbody.cpp(42,23): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+  Shader.cpp
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Shader.cpp(64,50): warning C4267: "=": konwersja z "size_t" do "GLint", możliwa utrata danych
+  Texture.cpp
+  Transform.cpp
+  Generowanie kodu...
+  stb_image.c
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(501,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(514,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
+  OpenEngine3D.vcxproj -> C:\Users\Jakub\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
