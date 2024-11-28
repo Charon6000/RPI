@@ -2,6 +2,7 @@
 #define CAMERA_H_INCLUDED
 
 # include <glm/glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/transform.hpp>
 
 class Camera
@@ -18,6 +19,11 @@ public:
 	inline glm::mat4 GetViewProjection() const
 	{
 		return m_perspective * glm::lookAt(m_position, m_position + m_forward, m_up);
+	}
+
+	void setAspect(float aspect)
+	{
+		m_perspective = glm::perspective(glm::radians(70.0f), aspect, 0.01f, 1000.0f);
 	}
 
 protected:
