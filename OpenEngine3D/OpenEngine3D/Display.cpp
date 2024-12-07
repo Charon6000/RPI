@@ -1,8 +1,10 @@
 #include "Display.h"
 #include <iostream>
 #include<GL/glew.h>
+#include "Camera.h"
 
-Display::Display(int width, int height, const std::string& title) 
+Display::Display(int width, int height, const std::string& title)
+	: _width(width), _height(height)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
@@ -53,5 +55,10 @@ void Display::Update()
 	{
 		if (e.type == SDL_QUIT)
 			_isClosed = true;
+		else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {
+			_width = e.window.data1;
+			_height = e.window.data2;
+			glViewport(0, 0, _width, _height);
+		}
 	}
 }

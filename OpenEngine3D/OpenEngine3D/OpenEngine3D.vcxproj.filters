@@ -36,9 +36,6 @@
     <ClCompile Include="stb_image.c">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="obj_loader.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
