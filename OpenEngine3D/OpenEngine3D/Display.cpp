@@ -56,8 +56,8 @@ void Display::Update()
 		if (e.type == SDL_QUIT)
 			_isClosed = true;
 		else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {
-			_height = e.window.data1;
-			_width = e.window.data2;
+			_width = e.window.data1;
+			_height = e.window.data2;
 			glViewport(0, 0, _width, _height);
 		}
 	}

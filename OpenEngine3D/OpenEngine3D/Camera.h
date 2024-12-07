@@ -8,12 +8,18 @@
 class Camera
 {
 public:
+	float fov, aspect, zNear, zFar;
+
 	Camera(const glm::vec3& pos, float fov, float aspect, float zNear, float zFar)
 	{
 		m_perspective = glm::perspective(fov, aspect, zNear, zFar);
 		m_position = pos;
 		m_forward = glm::vec3(0,0,1);
 		m_up = glm::vec3(0, 1, 0);
+		this->fov = fov;
+		this->aspect = aspect;
+		this->zNear = zNear;
+		this->zFar = zFar;
 	}
 
 	inline glm::mat4 GetViewProjection() const
@@ -23,7 +29,8 @@ public:
 
 	void setAspect(float aspect)
 	{
-		m_perspective = glm::perspective(glm::radians(70.0f), aspect, 0.01f, 1000.0f);
+		this->aspect = aspect;
+		m_perspective = glm::perspective(this->fov, aspect, this->zNear, this->zFar);
 	}
 
 protected:
