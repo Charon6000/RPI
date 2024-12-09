@@ -1,60 +1,79 @@
-#include "Shader.h"
+#include "Shader.h" 
 #include <iostream>
 #include <fstream>
 
-Shader::Shader(const std::string& fileName) 
+// Konstruktor: £aduje i inicjalizuje program shaderowy
+Shader::Shader(const std::string& fileName)
 {
+    // Tworzy pusty program shaderowy
     _program = glCreateProgram();
+
+    // Tworzy i kompiluje shadery wierzcho³ków i fragmentów
     _shaders[0] = CreateShader(LoadShader(fileName + ".vs"), GL_VERTEX_SHADER);
     _shaders[1] = CreateShader(LoadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
 
+    // Do³¹cza shadery do programu
     for (unsigned int i = 0; i < NUM_SHADER; i++)
         glAttachShader(_program, _shaders[i]);
 
-    glBindAttribLocation(_program, 0,"position");
+    // Przypisuje atrybuty wejœciowe do programu
+    glBindAttribLocation(_program, 0, "position");
     glBindAttribLocation(_program, 1, "texCoord");
 
+    // £¹czy shadery w program i sprawdza b³êdy
     glLinkProgram(_program);
     CheckShaderError(_program, GL_LINK_STATUS, true, "Program linking failed!:");
+
+    // Waliduje program shaderowy
     glValidateProgram(_program);
     CheckShaderError(_program, GL_VALIDATE_STATUS, true, "Program is invalid:");
 }
 
+// Destruktor: Usuwa shadery i program shaderowy
 Shader::~Shader()
 {
     for (unsigned int i = 0; i < NUM_SHADER; i++)
     {
+        // Od³¹cza i usuwa shadery
         glDetachShader(_program, _shaders[i]);
         glDeleteShader(_shaders[i]);
     }
 
+    // Usuwa program shaderowy
     glDeleteProgram(_program);
 }
 
+// Bind: Aktywuje program shaderowy do u¿ycia
 void Shader::Bind()
 {
     glUseProgram(_program);
 }
 
+// CreateShader: Tworzy, kompiluje i sprawdza shader
 GLuint Shader::CreateShader(const std::string& text, unsigned int type)
 {
+    // Tworzy pusty obiekt shaderowy
     GLuint shader = glCreateShader(type);
     if (shader == 0)
         std::cerr << "Error: Shader creation failed" << std::endl;
 
+    // Przygotowuje Ÿród³o shadera do kompilacji
     const GLchar* shaderSourceStrings[1];
     GLint shaderSourceStringsLenghts[1];
     shaderSourceStrings[0] = text.c_str();
     shaderSourceStringsLenghts[0] = text.length();
 
+    // Ustawia Ÿród³o i kompiluje shader
     glShaderSource(shader, 1, shaderSourceStrings, shaderSourceStringsLenghts);
     glCompileShader(shader);
 
+    // Sprawdza b³êdy kompilacji
     CheckShaderError(shader, GL_COMPILE_STATUS, false, "Shader compiling failed: ");
 
     return shader;
 }
 
+// LoadShader: £aduje kod shadera z pliku
 std::string Shader::LoadShader(const std::string& fileName)
 {
     std::ifstream file;
@@ -65,6 +84,7 @@ std::string Shader::LoadShader(const std::string& fileName)
 
     if (file.is_open())
     {
+        // Odczytuje linia po linii zawartoœæ pliku
         while (file.good())
         {
             getline(file, line);
@@ -73,12 +93,14 @@ std::string Shader::LoadShader(const std::string& fileName)
     }
     else
     {
+        // Informuje o b³êdzie, jeœli plik nie zosta³ otwarty
         std::cerr << "Unable to load shader: " << fileName << std::endl;
     }
 
     return output;
 }
 
+// CheckShaderError: Sprawdza b³êdy kompilacji lub walidacji shadera lub programu
 void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
 {
     GLint success = 0;
@@ -96,6 +118,7 @@ void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const 
         else
             glGetShaderInfoLog(shader, sizeof(error), NULL, error);
 
+        // Wyœwietla szczegó³owy komunikat o b³êdzie
         std::cerr << errorMessage << ": '" << error << "'" << std::endl;
     }
 }
