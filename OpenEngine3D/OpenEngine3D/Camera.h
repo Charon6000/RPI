@@ -8,8 +8,6 @@
 class Camera
 {
 public:
-	float fov, aspect, zNear, zFar;
-
 	Camera(const glm::vec3& pos, float fov, float aspect, float zNear, float zFar)
 	{
 		m_perspective = glm::perspective(fov, aspect, zNear, zFar);
@@ -39,6 +37,8 @@ private:
 	glm::vec3 m_position;
 	glm::vec3 m_forward;
 	glm::vec3 m_up;
+	float fov, aspect, zNear, zFar;
+
 };
 
 #endif //CAMERA_H_INCLUDED
