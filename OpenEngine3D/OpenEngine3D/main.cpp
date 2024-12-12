@@ -10,17 +10,21 @@
 
 int main(void)
 {
-    Camera camera(glm::vec3(0, 0, -5), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+    Camera camera(glm::vec3(0, 0, -10), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
     Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
     Object malpa("Malpa", "./res/mcqueen.jpg", Transform(), "./res/monkey3.obj", "./res/basicShader");
-    malpa.velocity = glm::vec3(0.001f, 0, 0);
+    Object sphere("Sphere", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
+    malpa.velocity = glm::vec3(0, -0.0001f, 0);
     malpa.SetRotation(glm::vec3(0,3,0));
+    sphere.velocity = glm::vec3(0, 0.0001f, 0);
+    sphere.SetRotation(glm::vec3(0, 3, 5));
     while (!display.IsClosed())
     {
         display.SetColor(250.0f, 0.0f,121.0f,0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
 
         malpa.Update(camera);
+        sphere.Update(camera);
         display.Update();
     }
     return 0;
