@@ -2,33 +2,25 @@
 #include <iostream>
 #include <GL/glew.h>
 #include "Display.h"
-#include "Shader.h""
-#include "Rigidbody.h"
-#include "Mesh.h"
-#include "Texture.h"
+#include "Camera.h"
+#include "Object.h"
 
-int main(void) 
+#define WIDTH 1300
+#define HEIGHT 800
+
+int main(void)
 {
-    Display display(1300,800,"OpenEngine3D");
-    Shader shader("./res/basicShader");
-    Vertex vertices[] = {
-        Vertex(glm::vec3(-0.5,-0.5,0), glm::vec2(-1.0 ,0.0)),
-        Vertex(glm::vec3(0,0.5,0), glm::vec2(-0.5, -1.0)),
-        Vertex(glm::vec3(0.5,-0.5,0), glm::vec2(0.0, 0.0)), };
-
-    Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
-    Texture texture("./res/mcqueen.jpg");
-    //Rigidbody rigidbody(0.0f, 5.0f, 0.0f);
+    Camera camera(glm::vec3(0, 0, -5), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+    Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
+    Object malpa("Malpa", "./res/mcqueen.jpg", Transform(), "./res/monkey3.obj", "./res/basicShader");
+    malpa.velocity = glm::vec3(0.001f, 0, 0);
+    malpa.SetRotation(glm::vec3(0,3,0));
     while (!display.IsClosed())
     {
         display.SetColor(250.0f, 0.0f,121.0f,0.0f);
-        shader.Bind();
-        texture.Bind(0);
-        mesh.Draw();
+        camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
 
-        //rigidbody.Update(0.006f);
-        //rigidbody.Draw();
-
+        malpa.Update(camera);
         display.Update();
     }
     return 0;

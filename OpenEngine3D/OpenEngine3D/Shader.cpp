@@ -19,6 +19,7 @@ Shader::Shader(const std::string& fileName)
     // Przypisuje atrybuty wejœciowe do programu
     glBindAttribLocation(_program, 0, "position");
     glBindAttribLocation(_program, 1, "texCoord");
+    glBindAttribLocation(_program, 2, "normal");
 
     // £¹czy shadery w program i sprawdza b³êdy
     glLinkProgram(_program);
@@ -27,6 +28,12 @@ Shader::Shader(const std::string& fileName)
     // Waliduje program shaderowy
     glValidateProgram(_program);
     CheckShaderError(_program, GL_VALIDATE_STATUS, true, "Program is invalid:");
+
+
+	// pobieranie uniformu z programu, odniesienie sie do niego
+	_uniforms[TRANSFORM_U] = glGetUniformLocation(_program, "transform");
+
+
 }
 
 // Destruktor: Usuwa shadery i program shaderowy
@@ -49,7 +56,20 @@ void Shader::Bind()
     glUseProgram(_program);
 }
 
+<<<<<<< HEAD
 // CreateShader: Tworzy, kompiluje i sprawdza shader
+=======
+void Shader::Update(const Transform& transform, const Camera& camera)
+{
+    //nasz model
+	glm::mat4 model = camera.GetViewProjection() * transform.GetModel();
+
+	//update uniformu
+    glUniformMatrix4fv(_uniforms[TRANSFORM_U], 1, GL_FALSE, &model[0][0]);
+
+}
+
+>>>>>>> origin
 GLuint Shader::CreateShader(const std::string& text, unsigned int type)
 {
     // Tworzy pusty obiekt shaderowy
