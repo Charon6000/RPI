@@ -1,4 +1,2 @@
-﻿  main.cpp
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(14,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(14,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+﻿  LINK : nie znaleziono elementu C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe ani nie został on skompilowany podczas ostatniego konsolidowania przyrostowego; zostanie wykonana pełna konsolidacja
   OpenEngine3D.vcxproj -> C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
