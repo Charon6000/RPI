@@ -1,10 +1,13 @@
 #include "Object.h"
+#include "BoundingSphere.h"
 
 Object::Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader)
-	:_texture(tekstura), _transform(transform), _mesh(mesh), _shader(shader)
+	:_texture(tekstura), _transform(transform), _mesh(mesh), _shader(shader), _nazwa(nazwa)
 {
 	this->_nazwa = nazwa;
 	std::cout << "Stworzono obiekt: " << nazwa << std::endl;
+
+	_boundingSphere = BoundingSphere(_mesh.GetVertices());
 }
 
 void Object::Update(Camera& camera)
@@ -17,6 +20,8 @@ void Object::Update(Camera& camera)
 
 	//ruch ze sta³¹ prêdkoœci¹
 	SetPosition(GetPosition() + velocity);
+
+	_boundingSphere.center = GetPosition();
 }
 
 void Object::SetPosition(glm::vec3 vector)
@@ -45,4 +50,14 @@ glm::vec3 Object::GetRotation()
 glm::vec3 Object::GetScale()
 {
 	return _transform.GetScale();
+}
+
+bool Object::CheckCollision(const Object& other)
+{
+	float distance = glm::abs(glm::length(_boundingSphere.center - other._boundingSphere.center));
+	float combinedRadius = _boundingSphere.radius + other._boundingSphere.radius;
+	if (distance <= combinedRadius) {
+		return true;
+	}
+	return false;
 }
