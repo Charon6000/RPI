@@ -15,10 +15,10 @@ int main(void)
     Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     mcqueenKula.SetPosition(glm::vec3(0, 4, 0));
-    mcqueenKula.velocity = glm::vec3(0, -0.001f, 0);
+    mcqueenKula.velocity = glm::vec3(0, -0.01f, 0);
     //mcqueenKula.SetRotation(glm::vec3(0,0,0));
     czarnyKula.SetPosition(glm::vec3(0, -4, 0));
-    czarnyKula.velocity = glm::vec3(0, 0.001f, 0);
+    czarnyKula.velocity = glm::vec3(0, 0.01f, 0);
     //czarnyKula.SetRotation(glm::vec3(0, 0, 10));
     while (!display.IsClosed())
     {
