@@ -18,6 +18,7 @@ public:
 	inline glm::vec2* GetTexCoord() { return &texCoord; }
 	inline glm::vec3* GetNormal() { return &normal; }
 
+
 protected:
 private:
 	glm::vec3 pos;
@@ -31,11 +32,14 @@ public:
 	Mesh(const std::string& fileName);
 	virtual ~Mesh();
 	void Draw();
+
+	const std::vector<glm::vec3>& GetVertices() const;
 protected:
 private:
 	Mesh(const Mesh& other);
 	void operator=(const Mesh& other);
 
+	std::vector<glm::vec3> vertices;
 
 	void InitMesh(const IndexedModel& model);
 

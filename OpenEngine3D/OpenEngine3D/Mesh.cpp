@@ -32,6 +32,10 @@ void Mesh::InitMesh(const IndexedModel& model)
 {
 	_drawCount = model.indices.size();
 
+	for (const auto& pos : model.positions) {
+		vertices.push_back(pos);
+	}
+
 	glGenVertexArrays(1, &_vertexArrayObject);
 	glBindVertexArray(_vertexArrayObject);
 
@@ -67,4 +71,8 @@ void Mesh::Draw()
 	glDrawElements(GL_TRIANGLES, _drawCount, GL_UNSIGNED_INT, 0);
 	//glDrawArrays(GL_TRIANGLES, 0, _drawCount);
 	glBindVertexArray(1);
+}
+
+const std::vector<glm::vec3>& Mesh::GetVertices() const {
+	return vertices;
 }
