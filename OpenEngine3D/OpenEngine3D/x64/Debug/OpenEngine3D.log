@@ -1,2 +1,10 @@
-﻿  LINK : nie znaleziono elementu C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe ani nie został on skompilowany podczas ostatniego konsolidowania przyrostowego; zostanie wykonana pełna konsolidacja
-  OpenEngine3D.vcxproj -> C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
+﻿  main.cpp
+C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\main.cpp(14,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\main.cpp(14,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+  Object.cpp
+  Texture.cpp
+  Generowanie kodu...
+  stb_image.c
+C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(501,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(514,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
+  OpenEngine3D.vcxproj -> C:\Users\Przemek\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
