@@ -20,8 +20,6 @@ int main(void)
     mcqueenKula.velocity = glm::vec3(0, -0.01f, 0);
     czarnyKula.SetPosition(glm::vec3(0, -4, 0));
     czarnyKula.velocity = glm::vec3(0, 0.01f, 0);
-    GameManager::obiekty.push_back(&mcqueenKula);
-    GameManager::obiekty.push_back(&czarnyKula);
     while (!display.IsClosed())
     {
         display.SetColor(250.0f, 0.0f, 121.0f, 0.0f);

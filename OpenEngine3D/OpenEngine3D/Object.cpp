@@ -7,7 +7,7 @@ Object::Object(std::string nazwa, const std::string& tekstura, Transform transfo
 	std::cout << "Stworzono obiekt: " << nazwa << std::endl;
 
 	_boundingSphere = BoundingSphere(_mesh.GetVertices());
-	//GameManager::obiekty.push_back(*this);
+	GameManager::obiekty.push_back(this);
 }
 
 void Object::Update(Camera& camera)

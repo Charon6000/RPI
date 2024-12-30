@@ -11,5 +11,5 @@ public:
     void Update(Camera& camera);
 private:
     void CheckCollisions();
-    void ObiectCompiling(Camera& camera);
+    void ObjectCompiling(Camera& camera);
 };

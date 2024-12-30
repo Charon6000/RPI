@@ -3,11 +3,11 @@
 std::vector<Object*> GameManager::obiekty;
 void GameManager::Update(Camera& camera)
 {
-    ObiectCompiling(camera);
+    ObjectCompiling(camera);
     CheckCollisions();
 }
 
-void GameManager::ObiectCompiling(Camera& camera)
+void GameManager::ObjectCompiling(Camera& camera)
 {
     for (int i = 0; i < obiekty.size(); i++)
     {
