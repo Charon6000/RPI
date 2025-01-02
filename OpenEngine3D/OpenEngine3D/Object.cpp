@@ -1,5 +1,4 @@
 #include "Object.h"
-#include "BoundingSphere.h"
 
 Object::Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader)
 	:_texture(tekstura), _transform(transform), _mesh(mesh), _shader(shader), _nazwa(nazwa)
@@ -8,6 +7,7 @@ Object::Object(std::string nazwa, const std::string& tekstura, Transform transfo
 	std::cout << "Stworzono obiekt: " << nazwa << std::endl;
 
 	_boundingSphere = BoundingSphere(_mesh.GetVertices());
+	GameManager::obiekty.push_back(this);
 }
 
 void Object::Update(Camera& camera)

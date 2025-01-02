@@ -6,11 +6,15 @@
 #include "BoundingSphere.h"
 #include <iostream>
 #include <string> 
+#include "GameManager.h"
+
+class GameManager;
 
 class Object
 {
 
 public:
+	std::string _nazwa;
 	glm::vec3 velocity = glm::vec3(0, 0, 0);
 	Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader);
 	void Update(Camera& camera);
@@ -27,8 +31,6 @@ private:
 	Transform _transform;
 	Mesh _mesh;
 	Shader _shader;
-	std::string _nazwa;
 
 	BoundingSphere _boundingSphere;
 };
-
