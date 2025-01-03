@@ -1,20 +1,11 @@
-<<<<<<< HEAD
-﻿  GameManager.cpp
+﻿  Display.cpp
+  GameManager.cpp
   Object.cpp
+  Shader.cpp
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Shader.cpp(82,48): warning C4267: "=": konwersja z "size_t" do "GLint", możliwa utrata danych
   main.cpp
 C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(16,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
 C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(16,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
   Generowanie kodu...
+Rigidbody.obj : warning LNK4020: rekord typu w elemencie "" jest uszkodzony; niektóre symbole i typy mogą być niedostępne z debugera
   OpenEngine3D.vcxproj -> C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
-=======
-﻿  main.cpp
-C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\main.cpp(14,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\main.cpp(14,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-  Object.cpp
-  Texture.cpp
-  Generowanie kodu...
-  stb_image.c
-C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(501,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
-C:\Users\Przemek\RPI\OpenEngine3D\OpenEngine3D\stb_image.c(514,36): warning C4244: "inicjowanie": konwersja z "__int64" do "int", możliwa utrata danych
-  OpenEngine3D.vcxproj -> C:\Users\Przemek\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
->>>>>>> origin

@@ -56,9 +56,7 @@ void Shader::Bind()
     glUseProgram(_program);
 }
 
-<<<<<<< HEAD
-// CreateShader: Tworzy, kompiluje i sprawdza shader
-=======
+
 void Shader::Update(const Transform& transform, const Camera& camera)
 {
     //nasz model
@@ -69,7 +67,7 @@ void Shader::Update(const Transform& transform, const Camera& camera)
 
 }
 
->>>>>>> origin
+// CreateShader: Tworzy, kompiluje i sprawdza shader
 GLuint Shader::CreateShader(const std::string& text, unsigned int type)
 {
     // Tworzy pusty obiekt shaderowy

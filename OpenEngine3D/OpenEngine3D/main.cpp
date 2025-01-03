@@ -24,7 +24,6 @@ int main(void)
     {
         display.SetColor(250.0f, 0.0f, 121.0f, 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
-
         GM.Update(camera);
         display.Update();
     }
