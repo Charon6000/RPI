@@ -16,6 +16,7 @@ int main(void)
 {
     //testowa
     bool dupa = true;
+    float color[3] = { 250.0f, 0.0f, 121.0f};
 
     GameManager GM;
     float rot = 1.0f;
@@ -38,7 +39,7 @@ int main(void)
     bool start = true;
     while (!display.IsClosed())
     {
-        display.SetColor(250.0f, 0.0f, 121.0f, 0.0f);
+        display.SetColor(color[0], color[1], color[2], 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
 
         ImGui_ImplOpenGL3_NewFrame();
@@ -58,6 +59,7 @@ int main(void)
         ImGui::Text("Tu beda opcje objektow");
         ImGui::Checkbox("Czy jestes gejem?", &dupa);
         ImGui::SliderFloat("Rotacja", &rot, 0.2f, 5.0f);
+        ImGui::ColorEdit3("Kolor t³a", color);
         mcqueenKula.SetRotation(glm::vec3(rot, rot, rot));
         
         ImGui::End();
