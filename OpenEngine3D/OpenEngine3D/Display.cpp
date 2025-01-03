@@ -2,6 +2,7 @@
 #include <iostream>
 #include<GL/glew.h>
 #include "Camera.h"
+#include "imgui/imgui_impl_sdl2.h"
 
 // Konstruktor: Inicjalizuje okno wyœwietlania oraz kontekst OpenGL
 
@@ -67,6 +68,7 @@ void Display::Update()
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
+        ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_QUIT)
 			_isClosed = true;
 		else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {

@@ -1,11 +1,4 @@
-﻿  Display.cpp
-  GameManager.cpp
-  Object.cpp
-  Shader.cpp
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\Shader.cpp(82,48): warning C4267: "=": konwersja z "size_t" do "GLint", możliwa utrata danych
-  main.cpp
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(16,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(16,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-  Generowanie kodu...
-Rigidbody.obj : warning LNK4020: rekord typu w elemencie "" jest uszkodzony; niektóre symbole i typy mogą być niedostępne z debugera
+﻿  main.cpp
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(23,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\huber\Pulpit\RPI\OpenEngine3D\OpenEngine3D\main.cpp(23,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
   OpenEngine3D.vcxproj -> C:\Users\huber\Pulpit\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
