@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoundingSphere.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="include\imgui\imgui.cpp" />

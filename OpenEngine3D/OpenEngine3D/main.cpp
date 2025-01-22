@@ -20,14 +20,16 @@ int main(void)
 
     GameManager GM;
     float rot = 1.0f;
-    Camera camera(glm::vec3(0, 0, -10), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+    float vel = 0.001f;
+    int i = -10;
+    Camera camera(glm::vec3(5, 1, -10), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
     Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
     Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     mcqueenKula.SetPosition(glm::vec3(0, 4, 0));
-    mcqueenKula.velocity = glm::vec3(0, -0.01f, 0);
+    mcqueenKula.velocity = glm::vec3(0, -0, 0);
     czarnyKula.SetPosition(glm::vec3(0, -4, 0));
-    czarnyKula.velocity = glm::vec3(0, 0.01f, 0);
+    czarnyKula.velocity = glm::vec3(0, 0, 0);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -39,6 +41,22 @@ int main(void)
     bool start = true;
     while (!display.IsClosed())
     {
+        SDL_Event event;
+
+        bool isRunning = true;
+        while (isRunning) {
+            while (SDL_PollEvent(&event)) {
+                if (event.type == SDL_QUIT) {
+                    isRunning = false;
+                }
+                else if (event.type == SDL_MOUSEWHEEL) {
+                    i += event.wheel.y;
+                    camera.OnMouseAction(glm::vec3(5, 1, i));
+                    std::cout << i << std::endl;
+                }
+            }
+        }
+
         display.SetColor(color[0], color[1], color[2], 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
 
@@ -56,6 +74,10 @@ int main(void)
         
         //testowe
         ImGui::Begin("Opcje!!!");
+        if (ImGui::Button("Start", ImVec2(50, 20))) {
+            mcqueenKula.velocity = glm::vec3(0, -0.001, 0);
+            czarnyKula.velocity = glm::vec3(0, 0.001, 0);
+        }
         ImGui::Text("Tu beda opcje objektow");
         ImGui::Checkbox("Czy jestes gejem?", &dupa);
         ImGui::SliderFloat("Rotacja", &rot, 0.2f, 5.0f);

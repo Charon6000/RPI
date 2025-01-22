@@ -75,6 +75,9 @@
     <ClCompile Include="include\imgui\imgui_widgets.cpp">
       <Filter>Pliki źródłowe\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rigidbody.h">

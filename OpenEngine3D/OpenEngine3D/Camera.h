@@ -32,6 +32,8 @@ public:
 		m_perspective = glm::perspective(this->fov, this->aspect, this->zNear, this->zFar);
 	}
 
+	void OnMouseAction(glm::vec3 vector);
+
 protected:
 private:
 	glm::vec3 m_position;
