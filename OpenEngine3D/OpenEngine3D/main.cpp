@@ -42,7 +42,8 @@ int main(void)
 
     bool start = true;
     bool isDragging = false;
-    int lastMouseX = 0, lastMouseY = 0;
+    int lastMouseX, lastMouseY;
+    int currentMouseX, currentMouseY;
 
     SDL_Event event;
     while (!display.IsClosed())
@@ -79,51 +80,52 @@ int main(void)
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+
+        Uint32 mouseState = SDL_GetMouseState(&currentMouseX, &currentMouseY);
         while (SDL_PollEvent(&event)) {
             SDL_GL_SetSwapInterval(0);
+            if (!ImGui::IsAnyItemActive() && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+                switch (event.type) {
+                case SDL_QUIT:
+                    break;
 
-            switch (event.type) {
-            case SDL_QUIT:
-                break;
+                case SDL_MOUSEWHEEL:
+                    z += event.wheel.y;
+                    break;
 
-            case SDL_MOUSEWHEEL:
-                z += event.wheel.y;
-                break;
+                case SDL_MOUSEBUTTONDOWN:
+                    if (event.button.button == SDL_BUTTON_LEFT) {
+                        isDragging = true;
+                        lastMouseX = event.button.x;
+                        lastMouseY = event.button.y;
+                    }
+                    break;
 
-            case SDL_MOUSEBUTTONDOWN:
-                if (event.button.button == SDL_BUTTON_LEFT) {
-                    isDragging = true;
-                    lastMouseX = event.button.x;
-                    lastMouseY = event.button.y;
+                case SDL_MOUSEBUTTONUP:
+                    if (event.button.button == SDL_BUTTON_LEFT) {
+                        isDragging = false;
+                    }
+                    break;
+                default:
+                    break;
                 }
-                break;
-
-            case SDL_MOUSEBUTTONUP:
-                if (event.button.button == SDL_BUTTON_LEFT) {
-                    isDragging = false;
-                }
-                break;
-
-            case SDL_MOUSEMOTION:
-                if (isDragging) {
-                    int dx = event.motion.x - lastMouseX;
-                    int dy = event.motion.y - lastMouseY;
-
-                    x += dx * 0.07f;
-                    y += dy * 0.07f;
-
-                    lastMouseX = event.motion.x;
-                    lastMouseY = event.motion.y;
-                }
-                break;
-
-            default:
-                break;
-            }
-
-            camera.udpatePosition(glm::vec3(x, y, z));
+            }   
         }
 
+       
+        if (isDragging) {
+
+            int dx = currentMouseX - lastMouseX;
+            int dy = currentMouseY - lastMouseY;
+
+            x += dx * 0.07f;
+            y += dy * 0.07f;
+
+            lastMouseX = currentMouseX;
+            lastMouseY = currentMouseY;
+        }
+
+        camera.udpatePosition(glm::vec3(x, y, z));
 
         display.Update();
         start = false;
