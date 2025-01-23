@@ -1,6 +1,6 @@
 #include "Camera.h"
 #include <iostream>
 
-void Camera::OnMouseAction(glm::vec3 vector) {
-	m_position = vector;
+void Camera::udpatePosition(glm::vec3 pos) {
+	m_position = pos;
 }

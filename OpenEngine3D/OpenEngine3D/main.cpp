@@ -21,8 +21,10 @@ int main(void)
     GameManager GM;
     float rot = 1.0f;
     float vel = 0.001f;
-    int i = -10;
-    Camera camera(glm::vec3(5, 1, -10), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+    int x = 5;
+    int y = 1;
+    int z = -20;
+    Camera camera(glm::vec3(x, y, z), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
     Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
     Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
@@ -39,23 +41,12 @@ int main(void)
     ImGui_ImplOpenGL3_Init("#version 330");
 
     bool start = true;
+    bool isDragging = false;
+    int lastMouseX = 0, lastMouseY = 0;
+
+    SDL_Event event;
     while (!display.IsClosed())
     {
-        SDL_Event event;
-
-        bool isRunning = true;
-        while (isRunning) {
-            while (SDL_PollEvent(&event)) {
-                if (event.type == SDL_QUIT) {
-                    isRunning = false;
-                }
-                else if (event.type == SDL_MOUSEWHEEL) {
-                    i += event.wheel.y;
-                    camera.OnMouseAction(glm::vec3(5, 1, i));
-                    std::cout << i << std::endl;
-                }
-            }
-        }
 
         display.SetColor(color[0], color[1], color[2], 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
@@ -87,6 +78,52 @@ int main(void)
         ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        while (SDL_PollEvent(&event)) {
+            SDL_GL_SetSwapInterval(0);
+
+            switch (event.type) {
+            case SDL_QUIT:
+                break;
+
+            case SDL_MOUSEWHEEL:
+                z += event.wheel.y;
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                if (event.button.button == SDL_BUTTON_LEFT) {
+                    isDragging = true;
+                    lastMouseX = event.button.x;
+                    lastMouseY = event.button.y;
+                }
+                break;
+
+            case SDL_MOUSEBUTTONUP:
+                if (event.button.button == SDL_BUTTON_LEFT) {
+                    isDragging = false;
+                }
+                break;
+
+            case SDL_MOUSEMOTION:
+                if (isDragging) {
+                    int dx = event.motion.x - lastMouseX;
+                    int dy = event.motion.y - lastMouseY;
+
+                    x += dx * 0.07f;
+                    y += dy * 0.07f;
+
+                    lastMouseX = event.motion.x;
+                    lastMouseY = event.motion.y;
+                }
+                break;
+
+            default:
+                break;
+            }
+
+            camera.udpatePosition(glm::vec3(x, y, z));
+        }
+
 
         display.Update();
         start = false;

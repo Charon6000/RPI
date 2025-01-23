@@ -1,4 +1,6 @@
 ﻿  main.cpp
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(26,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(26,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(28,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(28,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(112,29): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(113,29): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
   OpenEngine3D.vcxproj -> C:\Users\Jakub\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
