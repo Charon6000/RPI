@@ -61,6 +61,27 @@ bool Display::IsClosed()
     return _isClosed;
 }
 
+int Display::Zoom() 
+{
+    return z;
+}
+
+int Display::AxisX() 
+{
+    return currentMouseX;
+}
+
+int Display::AxisY()
+{
+    return currentMouseY;
+}
+
+bool Display::isDragging() 
+{
+    return _isDragging;
+}
+
+
 // Update: Aktualizuje okno, obs³uguje zdarzenia i wymienia bufory
 void Display::Update()
 {
@@ -68,6 +89,7 @@ void Display::Update()
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
+        SDL_GetMouseState(&currentMouseX, &currentMouseY);
         ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_QUIT)
 			_isClosed = true;
@@ -75,6 +97,15 @@ void Display::Update()
 			_width = e.window.data1;
 			_height = e.window.data2;
 			glViewport(0, 0, _width, _height);
-		}
+        }
+        else if (e.type == SDL_MOUSEWHEEL) {
+            z += e.wheel.y;
+        }
+        else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
+                _isDragging = true;
+        }
+        else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT) {
+                _isDragging = false;
+        }
 	}
 }

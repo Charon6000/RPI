@@ -42,12 +42,11 @@ int main(void)
 
     bool start = true;
     bool isDragging = false;
-    int lastMouseX, lastMouseY;
-    int currentMouseX, currentMouseY;
+    int lastMouseX = 0, lastMouseY = 0;
 
-    SDL_Event event;
     while (!display.IsClosed())
     {
+        int currentMouseX = (display.AxisX() - (WIDTH / 2)), currentMousey = (display.AxisY() - (HEIGHT / 2));
 
         display.SetColor(color[0], color[1], color[2], 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
@@ -79,53 +78,21 @@ int main(void)
         ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-
-        Uint32 mouseState = SDL_GetMouseState(&currentMouseX, &currentMouseY);
-        while (SDL_PollEvent(&event)) {
-            SDL_GL_SetSwapInterval(0);
-            if (!ImGui::IsAnyItemActive() && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
-                switch (event.type) {
-                case SDL_QUIT:
-                    break;
-
-                case SDL_MOUSEWHEEL:
-                    z += event.wheel.y;
-                    break;
-
-                case SDL_MOUSEBUTTONDOWN:
-                    if (event.button.button == SDL_BUTTON_LEFT) {
-                        isDragging = true;
-                        lastMouseX = event.button.x;
-                        lastMouseY = event.button.y;
-                    }
-                    break;
-
-                case SDL_MOUSEBUTTONUP:
-                    if (event.button.button == SDL_BUTTON_LEFT) {
-                        isDragging = false;
-                    }
-                    break;
-                default:
-                    break;
-                }
-            }   
-        }
-
        
-        if (isDragging) {
+        if (!ImGui::IsAnyItemActive() && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+            if (display.isDragging()) {
+                int dx = currentMouseX - lastMouseX;
+                int dy = currentMousey - lastMouseY;
 
-            int dx = currentMouseX - lastMouseX;
-            int dy = currentMouseY - lastMouseY;
+                x += dx * 0.1;
+                y += dy * 0.1;
 
-            x += dx * 0.07f;
-            y += dy * 0.07f;
-
-            lastMouseX = currentMouseX;
-            lastMouseY = currentMouseY;
+            }
         }
 
-        camera.udpatePosition(glm::vec3(x, y, z));
+        lastMouseX = currentMouseX;
+        lastMouseY = currentMousey;
+        camera.udpatePosition(glm::vec3(x, y, display.Zoom()));
 
         display.Update();
         start = false;
