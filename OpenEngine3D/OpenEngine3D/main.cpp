@@ -43,6 +43,10 @@ int main(void)
     bool start = true;
     bool isDragging = false;
     int lastMouseX = 0, lastMouseY = 0;
+    float sensitivity = 0.1f;
+
+    static float yaw = 90.0f;
+    static float pitch = 0.0f;
 
     while (!display.IsClosed())
     {
@@ -80,18 +84,26 @@ int main(void)
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
        
         if (!ImGui::IsAnyItemActive() && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+            int dx = currentMouseX - lastMouseX;
+            int dy = currentMousey - lastMouseY;
             if (display.isDragging()) {
-                int dx = currentMouseX - lastMouseX;
-                int dy = currentMousey - lastMouseY;
-
                 x += dx * 0.1;
-                y += dy * 0.1;
+                y += dy * 0.2;
+            }
+            if (display.isRotating()) {
+                yaw -= dx * sensitivity;
+                pitch += dy * sensitivity;
 
+                if (pitch > 89.0f) pitch = 89.0f;
+                if (pitch < -89.0f) pitch = -89.0f;
+
+                std::cout << yaw <<" "<< pitch << std::endl;
             }
         }
 
         lastMouseX = currentMouseX;
         lastMouseY = currentMousey;
+        camera.updateOrientation(yaw,pitch);
         camera.udpatePosition(glm::vec3(x, y, display.Zoom()));
 
         display.Update();

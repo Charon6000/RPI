@@ -81,6 +81,10 @@ bool Display::isDragging()
     return _isDragging;
 }
 
+bool Display::isRotating() {
+    return _isRotating;
+}
+
 
 // Update: Aktualizuje okno, obs³uguje zdarzenia i wymienia bufory
 void Display::Update()
@@ -106,6 +110,12 @@ void Display::Update()
         }
         else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT) {
                 _isDragging = false;
+        }
+        else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT) {
+            _isRotating = true;
+        }
+        else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_RIGHT) {
+            _isRotating = false;
         }
 	}
 }

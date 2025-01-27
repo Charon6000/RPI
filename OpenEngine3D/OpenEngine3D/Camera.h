@@ -34,6 +34,7 @@ public:
 
 	void udpatePosition(glm::vec3 vector);
 
+	void updateOrientation(float yaw, float pitch);
 
 
 protected:

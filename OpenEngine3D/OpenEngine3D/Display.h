@@ -18,6 +18,7 @@ public:
 	int AxisX();
 	int AxisY();
 	bool isDragging();
+	bool isRotating();
 
 	int GetWidth() const { return _width; }
 	int GetHeight() const { return _height; }
@@ -35,4 +36,5 @@ private:
 	
 	bool _isClosed;
 	bool _isDragging = false;
+	bool _isRotating = false;
 };
