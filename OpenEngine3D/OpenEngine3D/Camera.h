@@ -15,6 +15,7 @@ public:
 		m_position = pos;
 		m_forward = glm::vec3(0,0,1);
 		m_up = glm::vec3(0, 1, 0);
+		m_right = glm::vec3(1, 0, 0);
 		this->fov = fov;
 		this->aspect = aspect;
 		this->zNear = zNear;
@@ -32,16 +33,20 @@ public:
 		m_perspective = glm::perspective(this->fov, this->aspect, this->zNear, this->zFar);
 	}
 
-	void udpatePosition(glm::vec3 vector);
-
+	void udpatePosition(glm::vec3 offset);
 	void updateOrientation(float yaw, float pitch);
+	void updateZoom(float zoom);
 
+	glm::vec3 GetForward() const { return m_forward; }
+	glm::vec3 GetUp() const { return m_up; }
+	glm::vec3 GetPos() const { return m_position; }
 
 protected:
 private:
 	glm::vec3 m_position;
 	glm::vec3 m_forward;
 	glm::vec3 m_up;
+	glm::vec3 m_right;
 	float fov, aspect, zNear, zFar;
 
 };

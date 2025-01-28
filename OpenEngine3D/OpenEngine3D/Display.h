@@ -37,4 +37,5 @@ private:
 	bool _isClosed;
 	bool _isDragging = false;
 	bool _isRotating = false;
+	bool _wheel = false;
 };

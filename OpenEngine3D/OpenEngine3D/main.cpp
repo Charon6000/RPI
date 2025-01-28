@@ -47,6 +47,7 @@ int main(void)
 
     static float yaw = 90.0f;
     static float pitch = 0.0f;
+    
 
     while (!display.IsClosed())
     {
@@ -87,8 +88,11 @@ int main(void)
             int dx = currentMouseX - lastMouseX;
             int dy = currentMousey - lastMouseY;
             if (display.isDragging()) {
-                x += dx * 0.1;
-                y += dy * 0.2;
+                glm::vec3 offset;
+                offset.x = -(dx * 0.1f);
+                offset.y = dy * 0.2f;
+                offset.z = 0.0f;
+                camera.udpatePosition(offset);
             }
             if (display.isRotating()) {
                 yaw -= dx * sensitivity;
@@ -96,16 +100,15 @@ int main(void)
 
                 if (pitch > 89.0f) pitch = 89.0f;
                 if (pitch < -89.0f) pitch = -89.0f;
-
-                std::cout << yaw <<" "<< pitch << std::endl;
             }
+            
         }
+
 
         lastMouseX = currentMouseX;
         lastMouseY = currentMousey;
+        //camera.updateZoom(static_cast<float>(display.Zoom()));
         camera.updateOrientation(yaw,pitch);
-        camera.udpatePosition(glm::vec3(x, y, display.Zoom()));
-
         display.Update();
         start = false;
     }
