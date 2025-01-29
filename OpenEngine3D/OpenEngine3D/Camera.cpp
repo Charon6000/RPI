@@ -9,17 +9,16 @@ void Camera::udpatePosition(glm::vec3 offset) {
 }
 
 void Camera::updateOrientation(float yaw, float pitch) {
-	glm::vec3 front;
+    glm::mat4 yawRotation = glm::rotate(glm::radians(yaw), m_up);  // Obrót wokó³ lokalnej osi Y
+    glm::mat4 pitchRotation = glm::rotate(glm::radians(pitch), m_right); // Obrót wokó³ lokalnej osi X
 
-	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-	front.y = sin(glm::radians(pitch));
-	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-	m_forward = glm::normalize(front);
+    glm::vec4 newForward = pitchRotation * yawRotation * glm::vec4(m_forward, 0.0f);
 
-	m_right = glm::normalize(glm::cross(m_forward, glm::vec3(0.0f, 1.0f, 0.0f)));
-	m_up = glm::normalize(glm::cross(m_right, m_forward));
+    m_forward = glm::normalize(glm::vec3(newForward));
+    m_right = glm::normalize(glm::cross(m_forward, glm::vec3(0.0f, 1.0f, 0.0f))); // Aktualizacja prawej osi
+    m_up = glm::normalize(glm::cross(m_right, m_forward)); // Aktualizacja górnej osi
 }
 
-void Camera::updateZoom(float zoom) {
-	m_position.z += zoom;
+void Camera::zoom(float amount) {
+	m_position += m_forward * amount;
 }

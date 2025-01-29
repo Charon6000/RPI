@@ -35,7 +35,7 @@ public:
 
 	void udpatePosition(glm::vec3 offset);
 	void updateOrientation(float yaw, float pitch);
-	void updateZoom(float zoom);
+	void zoom(float amount);
 
 	glm::vec3 GetForward() const { return m_forward; }
 	glm::vec3 GetUp() const { return m_up; }

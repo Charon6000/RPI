@@ -14,6 +14,7 @@ public:
 	 ~Display();
 	void Update();
 	bool IsClosed();
+	void ResetScroolOffset();
 	int Zoom();
 	int AxisX();
 	int AxisY();
@@ -22,6 +23,9 @@ public:
 
 	int GetWidth() const { return _width; }
 	int GetHeight() const { return _height; }
+	int GetScrollOffset() { return _scrollOffset; }
+
+
 protected:
 private:
 	int _width, _height;
@@ -37,5 +41,6 @@ private:
 	bool _isClosed;
 	bool _isDragging = false;
 	bool _isRotating = false;
-	bool _wheel = false;
+	int _scrollOffset;
+	bool _scrolling = false;
 };

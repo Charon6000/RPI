@@ -52,6 +52,7 @@ int main(void)
     while (!display.IsClosed())
     {
         int currentMouseX = (display.AxisX() - (WIDTH / 2)), currentMousey = (display.AxisY() - (HEIGHT / 2));
+        float scrollOffset = display.GetScrollOffset();
 
         display.SetColor(color[0], color[1], color[2], 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
@@ -95,20 +96,16 @@ int main(void)
                 camera.udpatePosition(offset);
             }
             if (display.isRotating()) {
-                yaw -= dx * sensitivity;
-                pitch += dy * sensitivity;
-
-                if (pitch > 89.0f) pitch = 89.0f;
-                if (pitch < -89.0f) pitch = -89.0f;
+                camera.updateOrientation(-dx * sensitivity, dy * sensitivity);
             }
-            
+            if (scrollOffset != 0) {
+                camera.zoom(scrollOffset);
+                display.ResetScroolOffset();
+            }
         }
-
-
+       
         lastMouseX = currentMouseX;
         lastMouseY = currentMousey;
-        //camera.updateZoom(static_cast<float>(display.Zoom()));
-        camera.updateOrientation(yaw,pitch);
         display.Update();
         start = false;
     }

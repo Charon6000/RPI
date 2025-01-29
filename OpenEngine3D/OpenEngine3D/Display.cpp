@@ -56,60 +56,43 @@ void Display::SetColor(float r, float g, float b, float a)
 }
 
 // IsClosed: Sprawdza, czy okno zosta³o zamkniête
-bool Display::IsClosed()
-{
-    return _isClosed;
-}
+bool Display::IsClosed() { return _isClosed; }
 
-int Display::Zoom() 
-{
-    return z;
-}
+int Display::AxisX() { return currentMouseX; }
 
-int Display::AxisX() 
-{
-    return currentMouseX;
-}
+int Display::AxisY() { return currentMouseY; }
 
-int Display::AxisY()
-{
-    return currentMouseY;
-}
+bool Display::isDragging() { return _isDragging; }
 
-bool Display::isDragging() 
-{
-    return _isDragging;
-}
+bool Display::isRotating() { return _isRotating; }
 
-bool Display::isRotating() {
-    return _isRotating;
-}
-
+void Display::ResetScroolOffset() { _scrollOffset = 0; }
 
 // Update: Aktualizuje okno, obs³uguje zdarzenia i wymienia bufory
 void Display::Update()
 {
     SDL_GL_SwapWindow(_window);
-	SDL_Event e;
-	while (SDL_PollEvent(&e))
-	{
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
         SDL_GetMouseState(&currentMouseX, &currentMouseY);
         ImGui_ImplSDL2_ProcessEvent(&e);
-		if (e.type == SDL_QUIT)
-			_isClosed = true;
-		else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {
-			_width = e.window.data1;
-			_height = e.window.data2;
-			glViewport(0, 0, _width, _height);
+        _scrollOffset = 0;
+        if (e.type == SDL_QUIT)
+            _isClosed = true;
+        else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {
+            _width = e.window.data1;
+            _height = e.window.data2;
+            glViewport(0, 0, _width, _height);
         }
         else if (e.type == SDL_MOUSEWHEEL) {
-            z += e.wheel.y;
+            _scrollOffset = e.wheel.y;
         }
         else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
-                _isDragging = true;
+            _isDragging = true;
         }
         else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT) {
-                _isDragging = false;
+            _isDragging = false;
         }
         else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT) {
             _isRotating = true;
@@ -117,5 +100,5 @@ void Display::Update()
         else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_RIGHT) {
             _isRotating = false;
         }
-	}
+    }
 }
