@@ -1,12 +1,7 @@
-﻿  Camera.cpp
-  Display.cpp
-  GameManager.cpp
+﻿  Display.cpp
   main.cpp
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(28,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(28,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(55,28): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
-  Object.cpp
-  Shader.cpp
-C:\Users\Jakub\Desktop\RPI\OpenEngine3D\OpenEngine3D\Shader.cpp(82,50): warning C4267: "=": konwersja z "size_t" do "GLint", możliwa utrata danych
+C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(28,42): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(28,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Pawel\Desktop\RPI\OpenEngine3D\OpenEngine3D\main.cpp(55,28): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
   Generowanie kodu...
-  OpenEngine3D.vcxproj -> C:\Users\Jakub\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe
+  OpenEngine3D.vcxproj -> C:\Users\Pawel\Desktop\RPI\OpenEngine3D\x64\Debug\OpenEngine3D.exe

@@ -33,10 +33,11 @@ public:
 		m_perspective = glm::perspective(this->fov, this->aspect, this->zNear, this->zFar);
 	}
 
-	void udpatePosition(glm::vec3 offset);
+	void updatePosition(glm::vec3 offset);
 	void updateOrientation(float yaw, float pitch);
 	void zoom(float amount);
 
+	glm::vec3 GetRayFromScreen(int mouseX, int mouseY, int screenWidth, int screenHeight);
 	glm::vec3 GetForward() const { return m_forward; }
 	glm::vec3 GetUp() const { return m_up; }
 	glm::vec3 GetPos() const { return m_position; }

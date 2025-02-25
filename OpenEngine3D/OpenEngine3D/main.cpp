@@ -25,7 +25,7 @@ int main(void)
     int y = 1;
     int z = -20;
     Camera camera(glm::vec3(x, y, z), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
-    Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
+    Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D", &camera);
     Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     mcqueenKula.SetPosition(glm::vec3(0, 4, 0));
@@ -93,7 +93,7 @@ int main(void)
                 offset.x = -(dx * 0.1f);
                 offset.y = dy * 0.2f;
                 offset.z = 0.0f;
-                camera.udpatePosition(offset);
+                camera.updatePosition(offset);
             }
             if (display.isRotating()) {
                 camera.updateOrientation(-dx * sensitivity, dy * sensitivity);
