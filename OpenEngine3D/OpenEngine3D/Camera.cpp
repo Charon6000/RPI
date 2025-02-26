@@ -25,14 +25,14 @@ void Camera::zoom(float amount) {
 glm::vec3 Camera::GetRayFromScreen(int mouseX, int mouseY, int screenWidth, int screenHeight) {
     glm::vec4 viewport = glm::vec4(0.0f, 0.0f, screenWidth, screenHeight);
     glm::vec3 rayStart = glm::unProject(
-        glm::vec3(mouseX, screenHeight - mouseY, 0.0f),
+        glm::vec3(mouseX, mouseY, 0.0f),
         glm::lookAt(m_position, m_position + m_forward, m_up),
         m_perspective,
         viewport
     );
 
     glm::vec3 rayEnd = glm::unProject(
-        glm::vec3(mouseX, screenHeight - mouseY, 1.0f),
+        glm::vec3(mouseX, mouseY, 1.0f),
         glm::lookAt(m_position, m_position + m_forward, m_up),
         m_perspective,
         viewport

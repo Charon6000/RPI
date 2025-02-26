@@ -15,6 +15,8 @@ class Object
 
 public:
 	std::string _nazwa;
+	BoundingSphere _boundingSphere;
+	bool _czy_trafiony_promieniem = false;
 	glm::vec3 velocity = glm::vec3(0, 0, 0);
 	Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader);
 	void Update(Camera& camera);
@@ -32,5 +34,5 @@ private:
 	Mesh _mesh;
 	Shader _shader;
 
-	BoundingSphere _boundingSphere;
+	
 };

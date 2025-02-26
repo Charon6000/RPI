@@ -17,6 +17,7 @@ int main(void)
     //testowa
     bool dupa = true;
     float color[3] = { 250.0f, 0.0f, 121.0f};
+    Object* trafionyObiekt = nullptr;
 
     GameManager GM;
     float rot = 1.0f;
@@ -82,9 +83,48 @@ int main(void)
         mcqueenKula.SetRotation(glm::vec3(rot, rot, rot));
         
         ImGui::End();
+        if (trafionyObiekt != nullptr) {
+            ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.2f, io.DisplaySize.y * 0.5f)); // 20% szerokoœci, 50% wysokoœci
+            ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.8f, io.DisplaySize.y * 0.25f)); // 80% szerokoœci, 25% wysokoœci
+
+            ImGui::Begin("Ustawienia obiektu");
+
+            ImGui::Text("Edytujesz: %s", trafionyObiekt->_nazwa.c_str());
+
+            glm::vec3 position = trafionyObiekt->GetPosition();
+            glm::vec3 rotation = trafionyObiekt->GetRotation();
+            glm::vec3 scale = trafionyObiekt->GetScale();
+
+            if (ImGui::DragFloat3("Pozycja", &position.x, 0.1f)) {
+                trafionyObiekt->SetPosition(position);
+            }
+
+            if (ImGui::DragFloat3("Rotacja", &rotation.x, 1.0f)) {
+                trafionyObiekt->SetRotation(rotation);
+            }
+
+            if (ImGui::DragFloat3("Skala", &scale.x, 0.1f, 0.1f, 10.0f)) {
+                trafionyObiekt->SetScale(scale);
+            }
+
+            if (ImGui::Button("Zamknij")) {
+                trafionyObiekt = nullptr; 
+            }
+
+            ImGui::End();
+        }
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-       
+        
+        for (const auto& obj : GameManager::obiekty) {
+            if (obj->_czy_trafiony_promieniem == true) {
+                std::cout << "Trafiony obiekt: " << obj->_nazwa << std::endl;
+                
+                trafionyObiekt = obj;
+            }
+			obj->_czy_trafiony_promieniem = false;
+        }
+
         if (!ImGui::IsAnyItemActive() && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
             int dx = currentMouseX - lastMouseX;
             int dy = currentMousey - lastMouseY;

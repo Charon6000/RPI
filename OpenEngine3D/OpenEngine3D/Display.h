@@ -10,6 +10,7 @@ public:
     SDL_GLContext _glcontext;
 
     Display(int width, int height, const std::string& title, Camera* camera);
+    void CheckRayCollisions(const glm::vec3& rayOrigin, const glm::vec3& rayDirection);
     void SetColor(float r, float g, float b, float a);
     void Update();
     bool IsClosed();
@@ -19,7 +20,6 @@ public:
     int AxisY();
     bool isDragging();
     bool isRotating();
-    void processInput();
 
     int GetWidth() const { return _width; }
     int GetHeight() const { return _height; }
@@ -49,6 +49,4 @@ private:
     int _scrollOffset;
     bool _scrolling = false;
 
-    // Deklaracja metody obs³uguj¹cej podwójne klikniêcie
-    void handleDoubleClick();
 };

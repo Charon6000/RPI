@@ -2,8 +2,10 @@
 #include <iostream>
 #include <GL/glew.h>
 #include "Camera.h"
+#include "GameManager.h"
 #include "imgui/imgui_impl_sdl2.h"
 #include <SDL2/SDL.h>
+#include "imgui/imgui_impl_opengl3.h"
 
 // Konstruktor: Inicjalizuje okno wyœwietlania oraz kontekst OpenGL
 
@@ -90,7 +92,7 @@ void Display::Update()
                 // Podwójne klikniêcie wykryte!
                 glm::vec3 rayDirection = _camera->GetRayFromScreen(currentMouseX, currentMouseY, _width, _height);
                 std::cout << "Podwójne klikniêcie! Kierunek promienia: " << rayDirection.x << ", " << rayDirection.y << ", " << rayDirection.z << std::endl;
-                // Tu dodamy sprawdzanie kolizji
+                CheckRayCollisions(_camera->GetPos(), rayDirection);
             }
             lastClickTime = currentTime;
             lastMouseX = currentMouseX;
@@ -110,3 +112,22 @@ void Display::Update()
         }
     }
 }
+
+bool RayIntersectsSphere(const glm::vec3& rayOrigin, const glm::vec3& rayDir, const glm::vec3& sphereCenter, float sphereRadius) {
+    glm::vec3 oc = rayOrigin - sphereCenter;
+    float a = glm::dot(rayDir, rayDir);
+    float b = 2.0f * glm::dot(oc, rayDir);
+    float c = glm::dot(oc, oc) - sphereRadius * sphereRadius;
+    float discriminant = b * b - 4 * a * c;
+    return (discriminant > 0);
+}
+
+void Display::CheckRayCollisions(const glm::vec3& rayOrigin, const glm::vec3& rayDirection) {
+    
+    for (const auto& obj : GameManager::obiekty) {
+        if (RayIntersectsSphere(rayOrigin, rayDirection, obj->GetPosition(), obj->_boundingSphere.radius)) {            
+			obj->_czy_trafiony_promieniem = true;
+        }
+    }
+}
+
