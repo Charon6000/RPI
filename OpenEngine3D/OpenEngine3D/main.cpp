@@ -20,14 +20,18 @@ int main(void)
 
     GameManager GM;
     float rot = 1.0f;
-    Camera camera(glm::vec3(0, 0, -10), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+    float vel = 0.001f;
+    int x = 5;
+    int y = 1;
+    int z = -20;
+    Camera camera(glm::vec3(x, y, z), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
     Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
     Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
     mcqueenKula.SetPosition(glm::vec3(0, 4, 0));
-    mcqueenKula.velocity = glm::vec3(0, -0.01f, 0);
+    mcqueenKula.velocity = glm::vec3(0, -0, 0);
     czarnyKula.SetPosition(glm::vec3(0, -4, 0));
-    czarnyKula.velocity = glm::vec3(0, 0.01f, 0);
+    czarnyKula.velocity = glm::vec3(0, 0, 0);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -37,8 +41,19 @@ int main(void)
     ImGui_ImplOpenGL3_Init("#version 330");
 
     bool start = true;
+    bool isDragging = false;
+    int lastMouseX = 0, lastMouseY = 0;
+    float sensitivity = 0.1f;
+
+    static float yaw = 90.0f;
+    static float pitch = 0.0f;
+    
+
     while (!display.IsClosed())
     {
+        int currentMouseX = (display.AxisX() - (WIDTH / 2)), currentMousey = (display.AxisY() - (HEIGHT / 2));
+        float scrollOffset = display.GetScrollOffset();
+
         display.SetColor(color[0], color[1], color[2], 0.0f);
         camera.setAspect((float)display.GetWidth() / (float)display.GetHeight());
 
@@ -56,6 +71,10 @@ int main(void)
         
         //testowe
         ImGui::Begin("Opcje!!!");
+        if (ImGui::Button("Start", ImVec2(50, 20))) {
+            mcqueenKula.velocity = glm::vec3(0, -0.001, 0);
+            czarnyKula.velocity = glm::vec3(0, 0.001, 0);
+        }
         ImGui::Text("Tu beda opcje objektow");
         ImGui::Checkbox("Czy jestes gejem?", &dupa);
         ImGui::SliderFloat("Rotacja", &rot, 0.2f, 5.0f);
@@ -65,7 +84,28 @@ int main(void)
         ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+       
+        if (!ImGui::IsAnyItemActive() && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+            int dx = currentMouseX - lastMouseX;
+            int dy = currentMousey - lastMouseY;
+            if (display.isDragging()) {
+                glm::vec3 offset;
+                offset.x = -(dx * 0.1f);
+                offset.y = dy * 0.2f;
+                offset.z = 0.0f;
+                camera.udpatePosition(offset);
+            }
+            if (display.isRotating()) {
+                camera.updateOrientation(-dx * sensitivity, dy * sensitivity);
+            }
+            if (scrollOffset != 0) {
+                camera.zoom(scrollOffset);
+                display.ResetScroolOffset();
+            }
+        }
+       
+        lastMouseX = currentMouseX;
+        lastMouseY = currentMousey;
         display.Update();
         start = false;
     }
