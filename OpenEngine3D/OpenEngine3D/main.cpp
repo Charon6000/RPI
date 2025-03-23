@@ -16,6 +16,7 @@ int main(void)
 {
     //testowa
     bool dupa = true;
+    bool symulacja = false;
     float color[3] = { 250.0f, 0.0f, 121.0f};
 
     GameManager GM;
@@ -26,12 +27,10 @@ int main(void)
     int z = -20;
     Camera camera(glm::vec3(x, y, z), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
     Display display((float)WIDTH, (float)HEIGHT, "OpenEngine3D");
-    Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
-    Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/sphere.obj", "./res/basicShader");
+    Object mcqueenKula("MCQueenKula", "./res/mcqueen.jpg", Transform(), "./res/sphere.obj", "./res/basicShader", Kula);
+    Object czarnyKula("CzarnyKula", "./res/suit_guy.jpg", Transform(), "./res/cube.obj", "./res/basicShader", Static);
     mcqueenKula.SetPosition(glm::vec3(0, 4, 0));
-    mcqueenKula.velocity = glm::vec3(0, -0, 0);
     czarnyKula.SetPosition(glm::vec3(0, -4, 0));
-    czarnyKula.velocity = glm::vec3(0, 0, 0);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -71,10 +70,10 @@ int main(void)
         
         //testowe
         ImGui::Begin("Opcje!!!");
-        if (ImGui::Button("Start", ImVec2(50, 20))) {
-            mcqueenKula.velocity = glm::vec3(0, -0.001, 0);
-            czarnyKula.velocity = glm::vec3(0, 0.001, 0);
-        }
+        bool symulacja = ImGui::Button("Start", ImVec2(50, 20));
+
+        GM.Simulate(true);
+        
         ImGui::Text("Tu beda opcje objektow");
         ImGui::Checkbox("Czy jestes gejem?", &dupa);
         ImGui::SliderFloat("Rotacja", &rot, 0.2f, 5.0f);

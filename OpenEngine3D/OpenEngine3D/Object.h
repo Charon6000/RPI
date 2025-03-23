@@ -9,14 +9,20 @@
 #include "GameManager.h"
 
 class GameManager;
+enum type {
+	Static,
+	Kula
+};
 
 class Object
 {
 
 public:
+	type _typ;
+	bool simulate = false;
 	std::string _nazwa;
 	glm::vec3 velocity = glm::vec3(0, 0, 0);
-	Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader);
+	Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader, const type& typ);
 	void Update(Camera& camera);
 	void SetPosition(glm::vec3 vector);
 	void SetRotation(glm::vec3 vector);

@@ -1,7 +1,7 @@
 #include "Object.h"
 
-Object::Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader)
-	:_texture(tekstura), _transform(transform), _mesh(mesh), _shader(shader), _nazwa(nazwa)
+Object::Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader, const type& typ)
+	:_texture(tekstura), _transform(transform), _mesh(mesh), _shader(shader), _nazwa(nazwa), _typ(typ)
 {
 	this->_nazwa = nazwa;
 	std::cout << "Stworzono obiekt: " << nazwa << std::endl;
@@ -18,10 +18,18 @@ void Object::Update(Camera& camera)
 	_shader.Update(_transform, camera);
 	_mesh.Draw();
 
-	//ruch ze sta³¹ prêdkoœci¹
 	SetPosition(GetPosition() + velocity);
-
 	_boundingSphere.center = GetPosition();
+
+	if (_typ != Kula)
+		return;
+
+	//ruch ze sta³¹ prêdkoœci¹
+	if (simulate)
+		velocity.y -= 9.81f / 200.0f;
+
+	
+	
 }
 
 void Object::SetPosition(glm::vec3 vector)
