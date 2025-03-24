@@ -41,9 +41,10 @@ void GameManager::CheckCollisions()
                     obiekty[i]->SetPosition(obiekty[i]->GetPosition() - obiekty[i]->velocity);
                     obiekty[i]->velocity.y *= -0.5f;
                     std::cout << obiekty[j]->velocity.y;
-                    if (obiekty[i]->velocity.y > -0.5f && obiekty[i]->velocity.y < 0.5f)
+                    if (fabs(obiekty[i]->velocity.y) < 0.00005f)
                     {
-                        obiekty[i]->simulate = false;
+                        obiekty[i]->velocity.y = 0.0f;
+                        //obiekty[i]->simulate = false;
                     }
                 }
                 
@@ -53,6 +54,7 @@ void GameManager::CheckCollisions()
                     obiekty[j]->velocity.y *= -0.5f;
                     if (obiekty[j]->velocity.y > -0.1f && obiekty[j]->velocity.y < 0.1f)
                     {
+                        obiekty[j]->velocity.y = 0.0f;
                         obiekty[j]->simulate = false;
                     }
                 }

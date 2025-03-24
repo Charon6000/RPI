@@ -18,6 +18,7 @@ class Object
 {
 
 public:
+	float gravitational_pull = 9.81f;
 	type _typ;
 	bool simulate = false;
 	std::string _nazwa;

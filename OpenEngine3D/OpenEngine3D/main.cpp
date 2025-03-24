@@ -16,12 +16,11 @@ int main(void)
 {
     //testowa
     bool dupa = true;
-    bool symulacja = false;
+    //bool symulacja = false;
     float color[3] = { 250.0f, 0.0f, 121.0f};
-
+    bool symulacja = false;
     GameManager GM;
     float rot = 1.0f;
-    float vel = 0.001f;
     int x = 5;
     int y = 1;
     int z = -20;
@@ -60,7 +59,9 @@ int main(void)
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
+
         GM.Update(camera);
+
 
         if (start)
         {
@@ -70,9 +71,9 @@ int main(void)
         
         //testowe
         ImGui::Begin("Opcje!!!");
-        bool symulacja = ImGui::Button("Start", ImVec2(50, 20));
+        symulacja = ImGui::Button("Start", ImVec2(50, 20));
 
-        GM.Simulate(true);
+        GM.Simulate(symulacja);
         
         ImGui::Text("Tu beda opcje objektow");
         ImGui::Checkbox("Czy jestes gejem?", &dupa);
