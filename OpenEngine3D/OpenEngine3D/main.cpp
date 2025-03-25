@@ -15,12 +15,10 @@
 int main(void)
 {
     //testowa
-    bool dupa = true;
-    //bool symulacja = false;
     float color[3] = { 250.0f, 0.0f, 121.0f};
     bool symulacja = false;
     GameManager GM;
-    float rot = 1.0f;
+    float rot = 0.0f;
     int x = 5;
     int y = 1;
     int z = -20;
@@ -45,7 +43,7 @@ int main(void)
 
     static float yaw = 90.0f;
     static float pitch = 0.0f;
-    
+    static float velocity[3] = { mcqueenKula.velocity.x, mcqueenKula.velocity.y, mcqueenKula.velocity.z };
 
     while (!display.IsClosed())
     {
@@ -71,15 +69,22 @@ int main(void)
         
         //testowe
         ImGui::Begin("Opcje!!!");
-        symulacja = ImGui::Button("Start", ImVec2(50, 20));
-
-        GM.Simulate(symulacja);
-        
-        ImGui::Text("Tu beda opcje objektow");
-        ImGui::Checkbox("Czy jestes gejem?", &dupa);
-        ImGui::SliderFloat("Rotacja", &rot, 0.2f, 5.0f);
         ImGui::ColorEdit3("Kolor t³a", color);
-        mcqueenKula.SetRotation(glm::vec3(rot, rot, rot));
+        if (ImGui::Button("Start", ImVec2(50, 20))) {
+            mcqueenKula.simulate = true;
+            mcqueenKula.velocity += glm::vec3(velocity[0]/1000.0f, velocity[1]/1000.0f, velocity[2]/1000.0f);
+        }
+        
+        ImGui::Text("Opcje objektow");
+
+        if (ImGui::CollapsingHeader("Obiekt 1")) {
+            ImGui::SliderFloat("Rotacja", &rot, 0.0f, 5.0f);
+            mcqueenKula.SetRotation(glm::vec3(rot, rot, rot));
+            
+            ImGui::InputFloat3("Predkosc", velocity);            
+        }
+        
+        
         
         ImGui::End();
         ImGui::Render();

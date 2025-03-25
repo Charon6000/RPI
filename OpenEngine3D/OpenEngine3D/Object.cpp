@@ -25,8 +25,8 @@ void Object::Update(Camera& camera)
 	if (_typ != Kula)
 		return;
 
-	
-	velocity.y -= gravitational_pull / 100000000.0f;
+	if(simulate)
+		velocity.y -= gravitational_pull / 10000000.0f;
 
 }
 

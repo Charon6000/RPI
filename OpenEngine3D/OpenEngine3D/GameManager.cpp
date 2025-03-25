@@ -27,7 +27,7 @@ void GameManager::ObjectCompiling(Camera& camera)
 }
 
 void GameManager::CheckCollisions()
-{
+{   
     for (size_t i = 0; i < obiekty.size(); i++)
     {
         for (size_t j = i + 1; j < obiekty.size(); j++)
@@ -43,8 +43,8 @@ void GameManager::CheckCollisions()
                     std::cout << obiekty[j]->velocity.y;
                     if (fabs(obiekty[i]->velocity.y) < 0.00005f)
                     {
+                        obiekty[i]->simulate = false;
                         obiekty[i]->velocity.y = 0.0f;
-                        //obiekty[i]->simulate = false;
                     }
                 }
                 
