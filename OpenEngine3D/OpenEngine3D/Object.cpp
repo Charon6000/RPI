@@ -18,15 +18,16 @@ void Object::Update(Camera& camera)
 	_shader.Update(_transform, camera);
 	_mesh.Draw();
 
-	SetPosition(GetPosition() + velocity);
 	_boundingSphere.center = GetPosition();
 
 
-	if (_typ != Kula)
-		return;
-
-	if(simulate)
-		velocity.y -= gravitational_pull / 10000000.0f;
+	if (simulate)
+	{
+		SetPosition(GetPosition() + velocity);
+		if (_typ != Kula)
+			return;
+		velocity.y -= gravitational_pull / 200.0f;
+	}
 
 }
 

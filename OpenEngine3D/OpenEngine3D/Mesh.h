@@ -29,7 +29,7 @@ class Mesh
 {
 public:
 	Mesh(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices );
-	Mesh(const std::string& fileName);
+	Mesh(const std::string fileName);
 	virtual ~Mesh();
 	void Draw();
 
