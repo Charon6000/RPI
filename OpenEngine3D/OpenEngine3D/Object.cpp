@@ -21,15 +21,13 @@ void Object::Update(Camera& camera)
 	SetPosition(GetPosition() + velocity);
 	_boundingSphere.center = GetPosition();
 
+
 	if (_typ != Kula)
 		return;
 
-	//ruch ze sta³¹ prêdkoœci¹
-	if (simulate)
-		velocity.y -= 9.81f / 200.0f;
+	if(simulate)
+		velocity.y -= gravitational_pull / 10000000.0f;
 
-	
-	
 }
 
 void Object::SetPosition(glm::vec3 vector)
