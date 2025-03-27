@@ -2,7 +2,7 @@
 #include "obj_loader.h"
 #include <vector>
 
-Mesh::Mesh(const std::string& fileName)
+Mesh::Mesh(const std::string fileName)
 {
 	IndexedModel model = OBJModel(fileName).ToIndexedModel();
 	InitMesh(model);

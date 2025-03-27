@@ -11,7 +11,9 @@
 class GameManager;
 enum type {
 	Static,
-	Kula
+	Kula,
+	Kwadrat,
+	Wlasne
 };
 
 class Object
