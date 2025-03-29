@@ -8,7 +8,6 @@
 #include <string> 
 #include "GameManager.h"
 
-class GameManager;
 enum type {
 	Static,
 	Kula,
@@ -26,6 +25,7 @@ public:
 	bool simulate = false;
 	std::string _nazwa;
 	glm::vec3 velocity = glm::vec3(0, 0, 0);
+	glm::vec3 acceleration = glm::vec3(0, 0, 0);
 	Object(std::string nazwa, const std::string& tekstura, Transform transform, const std::string& mesh, const std::string& shader, const type& typ);
 	void Update(Camera& camera);
 	void SetPosition(glm::vec3 vector);
@@ -41,6 +41,5 @@ private:
 	Transform _transform;
 	Mesh _mesh;
 	Shader _shader;
-
 	BoundingSphere _boundingSphere;
 };

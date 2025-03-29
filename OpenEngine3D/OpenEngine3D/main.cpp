@@ -34,7 +34,6 @@ int main(void)
     int lastMouseX = 0, lastMouseY = 0;
     float sensitivity = 0.1f;
 
-    std::vector<std::string> ObiektyDict;
     int objectCounter = 0;
 
 
@@ -67,15 +66,17 @@ int main(void)
         ImGui::Begin("Opcje!!!");
         ImGui::ColorEdit3("Kolor t³a", color);
         if (ImGui::Button("Start", ImVec2(0, 20))) {
-            GM.inercial = false;
-            GM.Simulate(true);
-            for (int i = 0; i < GM.obiekty.size(); i++)
+            GameManager::inercial = false;
+            if (GameManager::obiekty.size() > 0)
             {
-                if (GM.obiekty[i]->_typ == Static)
-                    GM.inercial = true;
+                for (int i = 0; i < GameManager::obiekty.size(); i++)
+                {
+                    if (GameManager::obiekty[i]->_typ == Static)
+                        GameManager::inercial = true;
+                }
             }
+            GM.Simulate(true);
         }
-
         if (ImGui::Button("Stop", ImVec2(0, 20))) {
             GM.Simulate(false);
         }
@@ -147,10 +148,14 @@ int main(void)
                 }
                 ImGui::SeparatorText("Szybkoœci");
                 glm::vec3 predkosc = GM.obiekty[i]->velocity;
+                glm::vec3 acc = GM.obiekty[i]->acceleration;
                 bool symuluj = GM.obiekty[i]->simulate;
 
                 if (ImGui::InputFloat3("Predkosc", &predkosc[0])) {
                     GM.obiekty[i]->velocity = predkosc;
+                }
+                if (ImGui::InputFloat3("Przyspieszenie", &acc[0])) {
+                    GM.obiekty[i]->acceleration = acc;
                 }
                 float mas = GM.obiekty[i]->masa;
                 ImGui::InputFloat("Masa", &mas);
@@ -165,8 +170,6 @@ int main(void)
                 if (ImGui::Checkbox("Symuluj", &symuluj)) {
                     GM.obiekty[i]->simulate = symuluj;
                 }
-
-
             }
         }
         

@@ -1,16 +1,19 @@
 #include "GameManager.h"
 
+bool GameManager::inercial = true;
+std::vector<glm::vec3> GameManager::directions;
+float GameManager::GForce;
 std::vector<Object*> GameManager::obiekty;
-float inercial;
+bool GameManager::symulacja = false;
 void GameManager::Update(Camera& camera)
 {
-    inercial = true;
     ObjectCompiling(camera);
     CheckCollisions();
 }
 
 void GameManager::Simulate(bool czy)
 {
+    symulacja = czy;
     for (int i = 0; i < obiekty.size(); i++)
     {
         if (obiekty[i]->_typ == Kula)
@@ -30,6 +33,36 @@ void GameManager::ObjectCompiling(Camera& camera)
 
 void GameManager::CheckCollisions()
 {   
+    if (!symulacja)
+        return;
+    if (!inercial)
+    {
+        for (size_t i = 0; i < obiekty.size(); i++)
+        {
+            for (size_t j = i + 1; j < obiekty.size(); j++)
+            {
+                float dx = obiekty[i]->GetPosition().x - obiekty[j]->GetPosition().x;
+                float dy = obiekty[i]->GetPosition().y - obiekty[j]->GetPosition().y;
+                float odleglosc = sqrt(dx * dx + dy * dy);
+
+                if (odleglosc == 0) continue;
+
+                glm::vec3 kierunek(dx / odleglosc, dy / odleglosc, 0);
+
+                float G = 1.0f;
+                float sila = (G * obiekty[i]->masa * obiekty[j]->masa) / (odleglosc * odleglosc);
+
+                glm::vec3 przyspieszenie1 = (sila / obiekty[i]->masa) * kierunek;
+                glm::vec3 przyspieszenie2 = (sila / obiekty[j]->masa) * -kierunek;
+
+                obiekty[i]->velocity -= przyspieszenie1;
+                obiekty[j]->velocity -= przyspieszenie2;
+            }
+        }
+
+    }
+
+
     for (size_t i = 0; i < obiekty.size(); i++)
     {
         for (size_t j = i+1; j < obiekty.size(); j++)

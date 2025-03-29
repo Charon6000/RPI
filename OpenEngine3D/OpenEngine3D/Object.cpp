@@ -23,10 +23,13 @@ void Object::Update(Camera& camera)
 
 	if (simulate)
 	{
-		SetPosition(GetPosition() + velocity);
+		SetPosition(GetPosition() + velocity + acceleration);
 		if (_typ != Kula)
 			return;
-		velocity.y -= (gravitational_pull * masa) / 200.0f;
+		if (GameManager::inercial == true)
+		{
+			velocity.y -= (gravitational_pull * masa) / 200.0f;
+		}
 	}
 
 }
