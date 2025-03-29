@@ -34,7 +34,6 @@ int main(void)
     int lastMouseX = 0, lastMouseY = 0;
     float sensitivity = 0.1f;
 
-    std::vector<std::string> ObiektyDict;
     int objectCounter = 0;
 
 
@@ -58,6 +57,7 @@ int main(void)
         {
             ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.2f, io.DisplaySize.y), ImGuiCond_Always);
             ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+            
         }
         
        
@@ -66,11 +66,23 @@ int main(void)
         ImGui::Begin("Opcje!!!");
         ImGui::ColorEdit3("Kolor t³a", color);
         if (ImGui::Button("Start", ImVec2(0, 20))) {
+            GameManager::inercial = false;
+            if (GameManager::obiekty.size() > 0)
+            {
+                for (int i = 0; i < GameManager::obiekty.size(); i++)
+                {
+                    if (GameManager::obiekty[i]->_typ == Static)
+                        GameManager::inercial = true;
+                }
+            }
+            GM.Simulate(true);
+        }
+        if (ImGui::Button("Stop", ImVec2(0, 20))) {
             GM.Simulate(false);
         }
 
         static char str0[128] = "";
-        ImGui::InputText("Podaj nazwe", str0, IM_ARRAYSIZE(str0));
+        ImGui::InputTextWithHint("Podaj nazwe","Nazwa", str0, IM_ARRAYSIZE(str0));
 
         const char* items[] = {"Kwadrat", " Kula", "Malpa", "Wlasne"};
         static int item_current = 1;
@@ -136,16 +148,28 @@ int main(void)
                 }
                 ImGui::SeparatorText("Szybkoœci");
                 glm::vec3 predkosc = GM.obiekty[i]->velocity;
+                glm::vec3 acc = GM.obiekty[i]->acceleration;
                 bool symuluj = GM.obiekty[i]->simulate;
 
                 if (ImGui::InputFloat3("Predkosc", &predkosc[0])) {
                     GM.obiekty[i]->velocity = predkosc;
                 }
+                if (ImGui::InputFloat3("Przyspieszenie", &acc[0])) {
+                    GM.obiekty[i]->acceleration = acc;
+                }
+                float mas = GM.obiekty[i]->masa;
+                ImGui::InputFloat("Masa", &mas);
+                    try{
+                        GM.obiekty[i]->masa = mas;
+                    }
+                    catch (...)
+                    {
+                        continue;
+                    }
+
                 if (ImGui::Checkbox("Symuluj", &symuluj)) {
                     GM.obiekty[i]->simulate = symuluj;
                 }
-
-
             }
         }
         
