@@ -7,6 +7,7 @@ class Object;
 
 class GameManager {
 public:
+    bool inercial;
     static std::vector<Object*> obiekty;
     void Update(Camera& camera);
     void Simulate(bool czy);

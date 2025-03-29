@@ -58,6 +58,7 @@ int main(void)
         {
             ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.2f, io.DisplaySize.y), ImGuiCond_Always);
             ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+            
         }
         
        
@@ -66,11 +67,21 @@ int main(void)
         ImGui::Begin("Opcje!!!");
         ImGui::ColorEdit3("Kolor t³a", color);
         if (ImGui::Button("Start", ImVec2(0, 20))) {
+            GM.inercial = false;
+            GM.Simulate(true);
+            for (int i = 0; i < GM.obiekty.size(); i++)
+            {
+                if (GM.obiekty[i]->_typ == Static)
+                    GM.inercial = true;
+            }
+        }
+
+        if (ImGui::Button("Stop", ImVec2(0, 20))) {
             GM.Simulate(false);
         }
 
         static char str0[128] = "";
-        ImGui::InputText("Podaj nazwe", str0, IM_ARRAYSIZE(str0));
+        ImGui::InputTextWithHint("Podaj nazwe","Nazwa", str0, IM_ARRAYSIZE(str0));
 
         const char* items[] = {"Kwadrat", " Kula", "Malpa", "Wlasne"};
         static int item_current = 1;
@@ -141,6 +152,16 @@ int main(void)
                 if (ImGui::InputFloat3("Predkosc", &predkosc[0])) {
                     GM.obiekty[i]->velocity = predkosc;
                 }
+                float mas = GM.obiekty[i]->masa;
+                ImGui::InputFloat("Masa", &mas);
+                    try{
+                        GM.obiekty[i]->masa = mas;
+                    }
+                    catch (...)
+                    {
+                        continue;
+                    }
+
                 if (ImGui::Checkbox("Symuluj", &symuluj)) {
                     GM.obiekty[i]->simulate = symuluj;
                 }

@@ -20,6 +20,7 @@ class Object
 {
 
 public:
+	float masa = 1.0f;
 	float gravitational_pull = 9.81f;
 	type _typ;
 	bool simulate = false;

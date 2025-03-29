@@ -26,7 +26,7 @@ void Object::Update(Camera& camera)
 		SetPosition(GetPosition() + velocity);
 		if (_typ != Kula)
 			return;
-		velocity.y -= gravitational_pull / 200.0f;
+		velocity.y -= (gravitational_pull * masa) / 200.0f;
 	}
 
 }
